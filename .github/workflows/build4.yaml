@@ -20,7 +20,7 @@ jobs:
 
       - uses: actions-hub/gcloud@master
         env:
-          PROJECT_ID: ${{ secrets.gcp_project_name }}
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
           CLOUDSDK_AUTH_ACCESS_TOKEN: '${{ steps.google_cloud_auth.outputs.access_token }}'
         with:
           args: info
