@@ -21,4 +21,4 @@ jobs:
         uses: "google-github-actions/setup-gcloud@v0"
 
       - name: "Check GCS Bucket"
-        run: "gcloud storage ls"
+        run: gcloud secrets versions access "latest" --secret "ks-terraform"
