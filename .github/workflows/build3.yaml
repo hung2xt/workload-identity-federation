@@ -27,8 +27,8 @@ jobs:
       - id: 'list-buckets-contents'
         name: 'Check BK'
         run: |-
-        curl -sSf https://storage.googleapis.com/storage/v1/b/github_tf/o \
-          --header "Authorization: Bearer ${{ steps.auth.outputs.access_token }}"
+          'curl -sSf https://storage.googleapis.com/storage/v1/b/github_tf/o \
+          --header "Authorization: Bearer ${{ steps.auth.outputs.access_token }}"'
 
       # Now you can run gcloud commands authenticated as the impersonated service account.
       - id: 'gcloud'
