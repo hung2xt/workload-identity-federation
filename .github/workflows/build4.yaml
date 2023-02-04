@@ -19,7 +19,7 @@ jobs:
           activate_credentials_file: true
           workload_identity_provider: projects/${{ secrets.PROJECT_ID }}/locations/global/workloadIdentityPools/${{ secrets.WORKLOAD_IDENTITY_POOL }}/providers/${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.WORKLOAD_IDENTITY_SA }}
-          token_format: 'access_token'
+
 
       - uses: actions-hub/gcloud@master
         env:
