@@ -1,60 +1,40 @@
-# Example workflow
-# .github/workflows/example.yml
-
-name: 'Bucket info'
+name: QUERY BIGQUERY TABLE
 on: [push]
+#workflow_dispatch
 jobs:
-  run:
-    name: 'example to list bucket contents'
-    permissions:
-      id-token: write
-      contents: read
-    runs-on: 'ubuntu-latest'
-    steps:
-    - id: "auth"
-        name: "Authenticate to Google Cloud"
-        uses: "google-github-actions/auth@v0.4.0"
-        with:
-          workload_identity_provider: 'projects/737712162241/locations/global/workloadIdentityPools/github-pool-xn/providers/github-provider'
-          service_account: 'bq-685@sawyer-work-1804.iam.gserviceaccount.com'
+  get-secret:
+    runs-on: ubuntu-latest
 
-    - id: 'list-buckets-contents'
-      run: |-
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - uses: 'actions/checkout@v3'
+
+      # Configure Workload Identity Federation via a credentials file.
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+          #token_format: 'access_token'
+          #workload_identity_provider: 'projects/737712162241/locations/global/workloadIdentityPools/github-pool-tf1/providers/github-provider'
+          #service_account: 'github-actions@sawyer-work-1804.iam.gserviceaccount.com'
+
+      # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+
+      - id: 'list-buckets-contents'
+        name: 'Check BK'
+        run: |-
         curl -sSf https://storage.googleapis.com/storage/v1/b/github_tf/o \
           --header "Authorization: Bearer ${{ steps.auth.outputs.access_token }}"
-
-
-# name: QUERY BIGQUERY TABLE
-# on: [push]
-# #workflow_dispatch
-# jobs:
-#   get-secret:
-#     runs-on: ubuntu-latest
-
-#     # Add "id-token" with the intended permissions.
-#     permissions:
-#       contents: 'read'
-#       id-token: 'write'
-
-#     steps:
-#       - uses: 'actions/checkout@v3'
-
-#       # Configure Workload Identity Federation via a credentials file.
-#       - id: 'auth'
-#         name: 'Authenticate to Google Cloud'
-#         uses: 'google-github-actions/auth@v1'
-#         with:
-#           credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
-#           #token_format: 'access_token'
-#           #workload_identity_provider: 'projects/737712162241/locations/global/workloadIdentityPools/github-pool-tf1/providers/github-provider'
-#           #service_account: 'github-actions@sawyer-work-1804.iam.gserviceaccount.com'
-
-#       # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
-#       - name: 'Set up Cloud SDK'
-#         uses: 'google-github-actions/setup-gcloud@v1'
-
-#       # Now you can run gcloud commands authenticated as the impersonated service account.
-#       - id: 'gcloud'
-#         name: 'gcloud'
-#         run: |-
-#           bq query --nouse_legacy_sql 'SELECT * FROM `sawyer-work-1804`.SAWYER_WILLING.example_teams LIMIT 1000'
+          
+      # Now you can run gcloud commands authenticated as the impersonated service account.
+      - id: 'gcloud'
+        name: 'gcloud'
+        run: |-
+          bq query --nouse_legacy_sql 'SELECT * FROM `sawyer-work-1804`.SAWYER_WILLING.example_teams LIMIT 1000'
