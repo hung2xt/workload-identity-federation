@@ -12,9 +12,9 @@ jobs:
 
       - id: "auth"
         name: "Authenticate to Google Cloud"
-        uses: "google-github-actions/auth@v3"
+        uses: "google-github-actions/auth@v0.4.0"
         with:
-          workload_identity_provider: 'projects/737712162241/locations/global/workloadIdentityPools/github-pool-tf1/providers/github-provider'
+          workload_identity_provider: 'projects/737712162241/locations/global/workloadIdentityPools/github-pool-xn/providers/github-provider'
           service_account: 'bq-685@sawyer-work-1804.iam.gserviceaccount.com'
 
       - name: "Set up Cloud SDK"
