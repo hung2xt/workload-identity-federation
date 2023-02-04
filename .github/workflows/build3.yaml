@@ -33,6 +33,6 @@ jobs:
       - name: "Check GCS Bucket"
         run: gcloud secrets versions access "latest" --secret "ks-terraform"
       
-      - id: 'gcloud'
+      - id: 'gcloud bucket'
         name: 'Query Result from example_team Table'
         run: "gcloud storage ls"
