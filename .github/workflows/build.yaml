@@ -1,4 +1,5 @@
 name: Get BQ Result
+  on: [push]
 #workflow_dispatch
 jobs:
   get-secret:
