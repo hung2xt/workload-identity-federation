@@ -23,7 +23,20 @@ gcloud iam workload-identity-pools providers create-oidc "github-provider" \
   --issuer-uri="https://token.actions.githubusercontent.com"
 
 
-  gcloud iam service-accounts add-iam-policy-binding "terraform-gcp@sawyer-work-1804.iam.gserviceaccount.com" \
+  gcloud iam service-accounts add-iam-policy-binding "bq-685@sawyer-work-1804.iam.gserviceaccount.com" \
   --project="${PROJECT_ID}" \
   --role="roles/iam.workloadIdentityUser" \
   --member="principalSet://iam.googleapis.com/projects/737712162241/locations/global/workloadIdentityPools/github-pool-xn/attribute.repository/hung2xt/workload-identity-federation"
+
+
+https://iam.googleapis.com/projects/737712162241/locations/global/workloadIdentityPools/github-pool-xn/providers/github-provider
+
+gcloud iam service-accounts add-iam-policy-binding ${SERVICE_ACCOUNT} \
+  --project="${PROJECT_ID}" \
+  --role="roles/iam.workloadIdentityUser" \
+  --member="principalSet://iam.googleapis.com/${WORKLOAD_IDENTITY_POOL_ID}/attribute.repository/${REPO}"
+
+export WORKLOAD_IDENTITY_POOL_ID=$(gcloud iam workload-identity-pools describe "github-pool-xn" \
+  --project="${PROJECT_ID}" \
+  --location="global" \
+  --format="value(name)")

@@ -16,11 +16,11 @@ jobs:
       # Configure Workload Identity Federation via a credentials file.
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v1'
+        uses: 'google-github-actions/auth@v0'
         with:
           #token_format: 'access_token'
           workload_identity_provider: 'projects/737712162241/locations/global/workloadIdentityPools/github-pool-xn/providers/github-provider'
-          service_account: 'terraform-gcp@sawyer-work-1804.iam.gserviceaccount.com'
+          service_account: 'bq-685@sawyer-work-1804.iam.gserviceaccount.com'
       # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
