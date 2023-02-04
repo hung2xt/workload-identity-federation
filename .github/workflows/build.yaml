@@ -20,7 +20,7 @@ jobs:
         with:
           #token_format: 'access_token'
           workload_identity_provider: 'projects/737712162241/locations/global/workloadIdentityPools/github-pool-tf2/providers/github-provider'
-          service_account: '737712162241-compute@developer.gserviceaccount.com'
+          service_account: 'terraform-gcp@sawyer-work-1804.iam.gserviceaccount.com'
       # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
