@@ -40,3 +40,6 @@ export WORKLOAD_IDENTITY_POOL_ID=$(gcloud iam workload-identity-pools describe "
   --project="${PROJECT_ID}" \
   --location="global" \
   --format="value(name)")
+
+
+Set up environemnt >> https://snyk.io/blog/how-to-use-github-actions-environment-variables/
