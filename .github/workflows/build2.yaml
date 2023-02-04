@@ -19,5 +19,6 @@ jobs:
       - name: "Set up Cloud SDK"
         uses: "google-github-actions/setup-gcloud@v0"
 
-      - name: "List buckets"
-        run: "gcloud storage ls"
+      - name: "SELECT Bigquery Table"
+        run: |-
+          bq query --nouse_legacy_sql 'SELECT * FROM `sawyer-work-1804`.SAWYER_WILLING.example_teams LIMIT 1000'
