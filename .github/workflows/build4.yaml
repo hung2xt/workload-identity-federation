@@ -16,7 +16,7 @@ jobs:
         with:
           token_format: "access_token"
           create_credentials_file: true
-          activate_credentials_file: true
+          #activate_credentials_file: true
           workload_identity_provider: projects/${{ secrets.PROJECT_ID }}/locations/global/workloadIdentityPools/${{ secrets.WORKLOAD_IDENTITY_POOL }}/providers/${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.WORKLOAD_IDENTITY_SA }}
 
@@ -27,3 +27,6 @@ jobs:
           CLOUDSDK_AUTH_ACCESS_TOKEN: ${{ steps.google_cloud_auth.outputs.access_token }}
         with:
           args: info
+
+      - name: set crdential_file
+        run: gcloud auth login --cred-file=${{steps.auth.outputs.credentials_file_path}}
