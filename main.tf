@@ -5,7 +5,7 @@ locals {
 
 resource "google_iam_workload_identity_pool" "github_pool" {
   project                   = local.project_id
-  workload_identity_pool_id = "github-pool-tf2"
+  workload_identity_pool_id = "github-pool-tf3"
   display_name              = "GitHub pool"
   description               = "Identity pool for GitHub deployments"
 }
@@ -33,7 +33,7 @@ resource "google_service_account" "github_actions" {
 
 resource "google_service_account_iam_member" "workload_identity_user" {
   service_account_id = google_service_account.github_actions.name
-  role               = "roles/editor"
+  role               = "roles/iam.workloadIdentityUser"
   member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_pool.name}/attribute.repository/${local.repo}"
 }
 
