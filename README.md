@@ -43,3 +43,5 @@ export WORKLOAD_IDENTITY_POOL_ID=$(gcloud iam workload-identity-pools describe "
 
 
 Set up environemnt >> https://snyk.io/blog/how-to-use-github-actions-environment-variables/
+
+https://github.com/outofdevops/ghshr-gcp-wlif
