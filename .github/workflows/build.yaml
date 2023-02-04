@@ -1,6 +1,6 @@
 name: Get secret from secret manager
-on:
-  workflow_dispatch
+on: [push]
+#workflow_dispatch
 jobs:
   get-secret:
     runs-on: ubuntu-latest
@@ -18,8 +18,8 @@ jobs:
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v1'
       with:
-        token_format: 'access_token'
-        workload_identity_provider: 'projects/737712162241/locations/global/workloadIdentityPools/githubactions'
+        #token_format: 'access_token'
+        workload_identity_provider: 'projects/737712162241/locations/global/workloadIdentityPools/github-pool-tf1/providers/github-provider'
         service_account: 'github-actions@sawyer-work-1804.iam.gserviceaccount.com'
 
     # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
