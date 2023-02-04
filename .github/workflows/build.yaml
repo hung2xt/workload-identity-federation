@@ -19,7 +19,7 @@ jobs:
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v1'
       with:
-        workload_identity_provider: 'projects/737712162241/locations/global/workloadIdentityPools/githubactions/providers/github'
+        workload_identity_provider: 'projects/737712162241/locations/global/workloadIdentityPools/githubactions'
         service_account: 'github-actions@sawyer-work-1804.iam.gserviceaccount.com'
 
     # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
@@ -33,3 +33,4 @@ jobs:
         bq query --nouse_legacy_sql 'SELECT * FROM `sawyer-work-1804`.SAWYER_WILLING.example_teams LIMIT 1000'
 
 #https://iam.googleapis.com/projects/737712162241/locations/global/workloadIdentityPools/githubactions/providers/github
+#gcloud iam workload-identity-pools describe "githubactions" --project="${PROJECT_ID}" --location="global" --format="value(name)"
