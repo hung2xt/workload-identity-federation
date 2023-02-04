@@ -5,7 +5,7 @@ locals {
 
 resource "google_iam_workload_identity_pool" "github_pool" {
   project                   = local.project_id
-  workload_identity_pool_id = "github-pool-tf3"
+  workload_identity_pool_id = "github-pool-ex"
   display_name              = "GitHub pool"
   description               = "Identity pool for GitHub deployments"
 }
