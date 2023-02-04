@@ -20,4 +20,4 @@ jobs:
         uses: "google-github-actions/setup-gcloud@v0"
 
       - name: "SELECT Bigquery Table"
-        run: "gcloud storage ls"
+        run: "gcloud config set project sawyer-work-1804 && gcloud storage ls"
