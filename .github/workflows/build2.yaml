@@ -22,6 +22,6 @@ jobs:
       - name: "Set up Cloud SDK"
         uses: "google-github-actions/setup-gcloud@v0"
 
-      - name: "Check GCS Bucket"
-        run: "gcloud storage ls"
+      # - name: "Check GCS Bucket"
+      #   run: "gcloud storage ls"
       
