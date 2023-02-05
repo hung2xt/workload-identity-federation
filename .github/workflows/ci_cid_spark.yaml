@@ -34,8 +34,9 @@ jobs:
           path: . #'/Users/hungnp14/Desktop/DE/GITHUB_ACTION/workload-identity-federation/scripts/spark-1.py'
           destination: 'github_tf'
 
-      - name: Delet files from bucket
-        run: gsutil rm gs://github_tf/**
+      - name: 'Delete files from bucket'
+        run: |-
+          gsutil rm gs://github_tf/**
         # Example of using the output
       # - id: 'uploaded-files'
       #   uses: 'foo/bar@main'
