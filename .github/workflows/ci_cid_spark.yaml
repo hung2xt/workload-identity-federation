@@ -30,6 +30,8 @@ jobs:
       - id: 'upload-folder'
         uses: 'google-github-actions/upload-cloud-storage@v0'
         with:
+          workload_identity_provider: 'projects/737712162241/locations/global/workloadIdentityPools/gh-pool/providers/gh-provider'
+          service_account: 'terraform-gcp@sawyer-work-1804.iam.gserviceaccount.com'
           path: . #'/Users/hungnp14/Desktop/DE/GITHUB_ACTION/workload-identity-federation/scripts/spark-1.py'
           destination: 'gs://github_tf'
         
