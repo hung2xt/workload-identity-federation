@@ -28,7 +28,7 @@ jobs:
       - id: 'upload-folder'
         uses: 'google-github-actions/upload-cloud-storage@v0'
         with:
-          path: ./scripts/pyspark-rdd-map.py
+          path: ./scripts/
           destination: 'github_tf'
           export_default_credentials: true
 
