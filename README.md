@@ -23,7 +23,7 @@ gcloud iam workload-identity-pools providers create-oidc "github-provider" \
   --issuer-uri="https://token.actions.githubusercontent.com"
 
 
-gcloud iam service-accounts add-iam-policy-binding "gh-runner@sawyer-work-1804.iam.gserviceaccount.com" \
+gcloud iam service-accounts add-iam-policy-binding "terraform-gcp@sawyer-work-1804.iam.gserviceaccount.com" \
   --project="${PROJECT_ID}" \
   --role="roles/iam.workloadIdentityUser" \
   --member="principalSet://iam.googleapis.com/projects/737712162241/locations/global/workloadIdentityPools/gh-pool/attribute.repository/hung2xt/workload-identity-federation"
@@ -46,6 +46,10 @@ Set up environemnt >> https://snyk.io/blog/how-to-use-github-actions-environment
 
 https://github.com/outofdevops/ghshr-gcp-wlif
 
+https://github.com/google-github-actions/auth
+
 https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions
+
+https://github.com/ned1313/Deep-Dive-Terraform
 
 

@@ -1,0 +1,40 @@
+name: Upload Spark Application to GCS
+on: [push]
+jobs:
+  List-Buckets:
+    permissions:
+      contents: "read"
+      id-token: "write"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: "actions/checkout@v3"
+
+      - id: "auth"
+        name: "Authenticate to Google Cloud"
+        uses: "google-github-actions/auth@v0"
+        with:
+          workload_identity_provider: 'projects/737712162241/locations/global/workloadIdentityPools/gh-pool/providers/gh-provider'
+          service_account: 'terraform-gcp@sawyer-work-1804.iam.gserviceaccount.com'
+          #token_format: 'access_token'
+          access_token_lifetime: '300s'
+          
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v0"
+
+      - id: 'gcloud'
+        name: 'gcloud'
+        run: |-
+          bq query --nouse_legacy_sql 'SELECT * FROM `sawyer-work-1804`.SAWYER_WILLING.example_teams LIMIT 1000'
+      
+      - id: 'upload-folder'
+        uses: 'google-github-actions/upload-cloud-storage@v1'
+        with:
+        path: '/Users/hungnp14/Desktop/DE/GITHUB_ACTION/workload-identity-federation/scripts/spark-1.py'
+        destination: 'gs://github_tf/'
+
+        # Example of using the output
+      - id: 'uploaded-files'
+        uses: 'foo/bar@main'
+        env:
+          files: '${{ steps.upload-folder.outputs.uploaded }}'
