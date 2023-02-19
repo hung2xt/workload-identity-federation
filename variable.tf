@@ -14,10 +14,10 @@ variable "gcp_params" {
   description = "Google Cloud infomation"
 
   default = {
-    project_id = "sawyer-work-1804"
-    region = "asia-northeast1"
-    zone = "asia-northeast1-a"
-    service_account = "terraform-gcp@sawyer-work-1804.iam.gserviceaccount.com"
+    project_id = <PROJECT_ID>
+    region = <REGION_NAME>
+    zone = <ZONE>
+    service_account = <SERVICE_ACCOUNT_NAME>
     cluster_name = "airflow-cluster"
     service_account_name = "worker"
     service_account_namespace = "default"
